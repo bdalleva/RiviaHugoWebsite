@@ -24,12 +24,17 @@
     <header class="fixed top-0 w-full z-50 bg-obsidian/70 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <div class="font-mono font-bold text-xl text-white">Rivia<span class="text-accent-blue">.Inc</span></div>
-            <nav class="hidden md:flex space-x-8 font-mono text-sm">
-                <a href="#services" class="hover:text-accent-blue transition-colors">Services</a>
-                <a href="#projects" class="hover:text-accent-blue transition-colors">Showcase</a>
-                <a href="#contact"
-                    class="px-4 py-2 bg-accent-blue/10 text-accent-blue border border-accent-blue/50 rounded-md hover:bg-accent-blue/20 transition-all">Book
-                    Consultation</a>
+            <nav class="hidden md:flex items-center space-x-8 font-mono text-sm">
+                {{ range site.Menus.main }}
+                {{ if eq .Identifier "contact" }}
+                <a href="{{ .URL }}"
+                    class="px-4 py-2 bg-accent-blue/10 text-accent-blue border border-accent-blue/50 rounded hover:bg-accent-blue/20 transition-all font-bold tracking-wide">{{
+                    .Name }}</a>
+                {{ else }}
+                <a href="{{ .URL }}" class="text-gray-300 hover:text-white transition-colors duration-300">{{ .Name
+                    }}</a>
+                {{ end }}
+                {{ end }}
             </nav>
         </div>
     </header>

@@ -1,3 +1,28 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Rivia Inc. | Enterprise Systems & Cloud Architecture'
+
+[menu]
+  [[menu.main]]
+    identifier = "expertise"
+    name = "Expertise"
+    url = "#expertise"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "approach"
+    name = "Approach"
+    url = "#approach"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "insights"
+    name = "Insights"
+    url = "#insights"
+    weight = 30
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "#contact"
+    weight = 40

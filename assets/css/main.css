@@ -1,2 +1,12 @@
 @import "tailwindcss";
-@config "./tailwind.config.js";
+
+@theme {
+    --color-obsidian: #0b0e14;
+    --color-accent-blue: #00D2FF;
+    --color-accent-green: #10B981;
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+}
+
+@source "../../layouts";
+@source "../../content";
