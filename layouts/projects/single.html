@@ -1,0 +1,59 @@
+{{ define "main" }}
+<article class="min-h-screen py-24 relative">
+    <div class="container mx-auto px-6 max-w-4xl relative z-10">
+        <!-- Header -->
+        <header class="mb-16 border-b border-white/10 pb-12 text-center md:text-left">
+            <div class="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
+                {{ range .Params.tags }}
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">{{
+                    . }}</span>
+                {{ end }}
+            </div>
+            <h1 class="font-mono text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                {{ .Title }}
+            </h1>
+            {{ if .Description }}
+            <p class="text-xl md:text-2xl text-gray-400 font-sans font-light leading-relaxed">
+                {{ .Description }}
+            </p>
+            {{ end }}
+        </header>
+
+        <!-- Markdown Content via Tailwind Typography -->
+        <div class="prose prose-invert prose-lg max-w-none font-sans
+            prose-headings:font-mono prose-headings:font-bold prose-headings:text-white
+            prose-a:text-accent-blue hover:prose-a:text-white prose-a:transition-colors
+            prose-code:text-accent-green prose-code:font-mono
+            prose-pre:bg-obsidian prose-pre:border prose-pre:border-white/10
+            prose-img:rounded-xl prose-img:border prose-img:border-white/10">
+            {{ .Content }}
+        </div>
+    </div>
+</article>
+
+<!-- Initialize Mermaid.js for diagrams -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        fontFamily: '"JetBrains Mono", monospace'
+    });
+
+    // Hugo renders ```mermaid as <code class="language-mermaid"> inside a <pre>.
+    // We need to extract the text and place it in a <div class="mermaid"> so the library picks it up.
+    document.addEventListener("DOMContentLoaded", function () {
+        const blocks = document.querySelectorAll('pre code.language-mermaid');
+        blocks.forEach((block) => {
+            const div = document.createElement('div');
+            div.className = 'mermaid';
+            div.textContent = block.textContent;
+            block.parentNode.replaceWith(div);
+        });
+
+        // Let mermaid run over the newly injected divs
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    });
+</script>
+{{ end }}

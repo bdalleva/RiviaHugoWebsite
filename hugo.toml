@@ -16,6 +16,12 @@ title = 'Rivia Inc. | Enterprise Systems & Cloud Architecture'
     weight = 20
 
   [[menu.main]]
+    identifier = "projects"
+    name = "Showcase"
+    url = "/projects/"
+    weight = 25
+
+  [[menu.main]]
     identifier = "insights"
     name = "Insights"
     url = "#insights"

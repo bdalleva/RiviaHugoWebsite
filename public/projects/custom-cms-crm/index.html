@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom CMS &amp; CRM Engine | Rivia Inc.</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    
+    
+    <link rel="stylesheet" href="/css/main.min.45db38178912f0767acfe3819a9e5d0bd0d7a7f920d51fe7db77d6491ada185f.css" integrity="sha256-Rds4F4kS8HZ6z&#43;OBmp5dC9DXp/kg1R/n23fWSRraGF8=">
+</head>
+
+<body class="bg-obsidian text-white font-sans antialiased min-h-screen flex flex-col">
+
+    
+    <header class="fixed top-0 w-full z-50 bg-obsidian/70 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="font-mono font-bold text-xl text-white">Rivia<span class="text-accent-blue">.Inc</span></div>
+            <nav class="hidden md:flex items-center space-x-8 font-mono text-sm">
+                
+                
+                <a href="#expertise" class="text-gray-300 hover:text-white transition-colors duration-300">Expertise</a>
+                
+                
+                
+                <a href="#approach" class="text-gray-300 hover:text-white transition-colors duration-300">Approach</a>
+                
+                
+                
+                <a href="/projects/" class="text-gray-300 hover:text-white transition-colors duration-300">Showcase</a>
+                
+                
+                
+                <a href="#insights" class="text-gray-300 hover:text-white transition-colors duration-300">Insights</a>
+                
+                
+                
+                <a href="#contact"
+                    class="px-4 py-2 bg-accent-blue/10 text-accent-blue border border-accent-blue/50 rounded hover:bg-accent-blue/20 transition-all font-bold tracking-wide">Contact</a>
+                
+                
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-24">
+        
+<article class="min-h-screen py-24 relative">
+    <div class="container mx-auto px-6 max-w-4xl relative z-10">
+        
+        <header class="mb-16 border-b border-white/10 pb-12 text-center md:text-left">
+            <div class="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
+                
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">.NET 8</span>
+                
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">C#</span>
+                
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">PostgreSQL</span>
+                
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">Redis</span>
+                
+                <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-accent-blue">Azure</span>
+                
+            </div>
+            <h1 class="font-mono text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Custom CMS &amp; CRM Engine
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-400 font-sans font-light leading-relaxed">
+                A high-performance C# backend replacement for a sluggish legacy system, reducing TTFB by 800%.
+            </p>
+            
+        </header>
+
+        
+        <div class="prose prose-invert prose-lg max-w-none font-sans
+            prose-headings:font-mono prose-headings:font-bold prose-headings:text-white
+            prose-a:text-accent-blue hover:prose-a:text-white prose-a:transition-colors
+            prose-code:text-accent-green prose-code:font-mono
+            prose-pre:bg-obsidian prose-pre:border prose-pre:border-white/10
+            prose-img:rounded-xl prose-img:border prose-img:border-white/10">
+            <h2 id="the-problem">The Problem</h2>
+<p>The client, a mid-sized e-commerce operation, had outgrown their off-the-shelf CRM system. Data synchronization was taking too long, database deadlocks were causing sporadic 502 errors during peak load, and feature development had ground to a halt due to crippling technical debt. The business required an alternative that was fast, strongly typed, and entirely owned by them.</p>
+<h2 id="the-solution">The Solution</h2>
+<p>I designed and implemented a bespoke CMS and CRM engine from scratch using <strong>.NET 8</strong> and <strong>Clean Architecture</strong> principles. Rather than relying on heavyweight ORMs for everything, I utilized Dapper for high-performance read projections while keeping Entity Framework Core strictly for bounded write operations.</p>
+<p>Here is a high-level view of the decoupled architecture:</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+    Client((Web Client)) --&gt; API[API Gateway]
+    API --&gt; ReadPath{CQRS: Query}
+    API --&gt; WritePath{CQRS: Command}
+    
+    ReadPath --&gt; Redis[(Redis Cache)]
+    Redis --&gt; Dapper[Dapper Micro-ORM]
+    Dapper --&gt; DB[(PostgreSQL Read Replica)]
+    
+    WritePath --&gt; Domain[Domain Layer]
+    Domain --&gt; EF[EF Core]
+    EF --&gt; MasterDB[(PostgreSQL Primary)]
+    
+    MasterDB -- WAL Replication --&gt; DB
+</code></pre><h3 id="core-implementation-details">Core Implementation Details</h3>
+<p>The system heavily leverages the <strong>Mediator pattern</strong> to decouple the HTTP transport layer from the business logic.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#a6e22e">[ApiController]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">[Route(&#34;api/customers&#34;)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerController</span> : ControllerBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> IMediator _mediator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> CustomerController(IMediator mediator) =&gt; _mediator = mediator;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpPost]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IActionResult&gt; CreateCustomer([FromBody] CreateCustomerCommand command)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _mediator.Send(command);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result.IsSuccess ? Ok(result.Value) : BadRequest(result.Errors);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>By isolating the domain, we achieved 100% unit-test coverage on the business rules.</p>
+<h2 id="results">Results</h2>
+<ul>
+<li><strong>Performance</strong>: Time To First Byte (TTFB) decreased from 1.2s to 85ms on the 95th percentile.</li>
+<li><strong>Reliability</strong>: Extinguished all database deadlocks by separating read and write pathways.</li>
+<li><strong>Velocity</strong>: The client&rsquo;s internal team can now implement requested features in days instead of weeks.</li>
+</ul>
+<p>The system is now processing over 50,000 transactions daily seamlessly.</p>
+
+        </div>
+    </div>
+</article>
+
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        fontFamily: '"JetBrains Mono", monospace'
+    });
+
+    
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const blocks = document.querySelectorAll('pre code.language-mermaid');
+        blocks.forEach((block) => {
+            const div = document.createElement('div');
+            div.className = 'mermaid';
+            div.textContent = block.textContent;
+            block.parentNode.replaceWith(div);
+        });
+
+        
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    });
+</script>
+
+    </main>
+
+    
+    <footer class="border-t border-white/10 py-8 bg-black/50 overflow-hidden">
+        <div class="container mx-auto px-6 text-center text-sm font-mono text-gray-500">
+            &copy; 2026 Rivia Inc. All rights reserved. | Enterprise-Grade Systems Architecture
+        </div>
+    </footer>
+
+</body>
+
+</html>
