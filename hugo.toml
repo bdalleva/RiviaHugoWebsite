@@ -1,7 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Rivia Inc. | Enterprise Systems & Cloud Architecture'
-
+enableRobotsTXT = true
 [menu]
   [[menu.main]]
     identifier = "expertise"
