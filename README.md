@@ -23,6 +23,27 @@
 [website]: https://gohugo.io
 [windows]: https://gohugo.io/installation/windows
 
+# Rivia Inc. Website Repository
+
+This repository contains the source code for the Rivia Inc. official website, built with Hugo and Tailwind CSS v4.
+
+## Running and Debugging Locally
+
+To run the site locally for development and debugging, you will need Hugo installed on your system. 
+
+1. **Install Hugo**: Ensure you have Hugo installed (the extended version is recommended if you use SCSS/SASS, though this project primarily uses PostCSS/Tailwind).
+2. **Start the Development Server**: Run the following command from the root of the project:
+   ```bash
+   hugo server -D
+   ```
+   * The `-D` flag tells Hugo to also render and serve content marked as `draft: true`.
+3. **View the Site**: Open your web browser and navigate to `http://localhost:1313`. The server features hot-reloading, so changes to templates or content will automatically refresh the browser.
+4. **Troubleshooting CSS**: We use native Tailwind v4 `@theme` and `@source` directives in `/assets/css/main.css`. If styles aren't updating, ensure you don't have conflicting PostCSS configurations in your global environment. If the server hangs, terminate the `hugo` process and verify your CSS paths aren't causing infinite scanning loops.
+
+---
+
+## Original Hugo Documentation
+
 <a href="https://gohugo.io/"><img src="https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true" alt="Hugo" width="565"></a>
 
 A fast and flexible static site generator built with love by [bep], [spf13], and [friends] in [Go].

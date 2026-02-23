@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rivia Inc. | Enterprise Systems &amp; Cloud Architecture</title>
-    <link>http://localhost:1314/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Rivia Inc. | Enterprise Systems &amp; Cloud Architecture</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1314/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
