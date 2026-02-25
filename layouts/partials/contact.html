@@ -25,6 +25,10 @@
                 <!-- Disable Captcha (Optional, keeping it clean) -->
                 <input type="hidden" name="_captcha" value="false">
 
+                <!-- Redirect on Success -->
+                <input type="hidden" name="_next"
+                    value="https://bdalleva.github.io/RiviaHugoWebsite/#contact?success=true">
+
                 <!-- Name Field -->
                 <div>
                     <label for="name" class="block text-sm font-mono text-gray-300 mb-2 tracking-wide">Name</label>
@@ -65,3 +69,19 @@
         </div>
     </div>
 </section>
+
+<!-- Script to handle URL param on return -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            // Optional: You can replace this alert with a nicelooking Toast component if you prefer
+            alert("Thanks! Your message has been sent successfully.");
+
+            // Clean up the URL so it doesn't alert on refresh
+            const url = new URL(window.location);
+            url.searchParams.delete('success');
+            window.history.replaceState({}, '', url);
+        }
+    });
+</script>
